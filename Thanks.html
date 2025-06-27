@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Submission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .thank-you-message {
+            display: none;
+            font-size: 18px;
+            color: #4caf50;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Subscribe to Our Newsletter</h1>
+    <form id="emailForm" onsubmit="showThankYouMessage(event)">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="thankYouMessage" class="thank-you-message">
+        <h2>Thank you for subscribing! <br>
+            <a href="index.html"> Go To Home </a>
+        </h2>
+        <p>We’ve received your email. You’ll hear from us soon!</p>
+    </div>
+</div>
+
+<script>
+    function showThankYouMessage(event) {
+        event.preventDefault();
+        document.getElementById("emailForm").style.display = "none";
+        document.getElementById("thankYouMessage").style.display = "block";
+    }
+</script>
+
+</body>
+</html>

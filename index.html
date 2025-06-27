@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>PUGSDE</title>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;        
+        color: white;
+        z-index: -999;
+        
+      }
+      .logo {
+        border-bottom-right-radius: 45px;
+        padding: 15px;
+        background-color: #0f155e;
+        color: white;
+        padding-left: 75px;
+      }
+      .navbar {
+        border-bottom-left-radius: 45px;
+        border-bottom-right-radius: 45px;
+        padding: 13.5px;
+        background-color: #0f155e;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        margin: 25px 75px;
+      }
+      .navbar a:hover {
+        text-decoration: none;
+        color: rgb(240, 28, 28);
+      }
+
+
+      .mission {
+background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9IndhdmUtZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IzAwMDAzZjsiIG9mZnNldD0iMCIgaWQ9ImRlZXAtb2NlYW4iIC8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiM0ZTZmZmY7IiBvZmZzZXQ9IjEiIGlkPSJzaGFsbG93LW9jZWFuIiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggc3R5bGU9ImZpbGw6dXJsKCN3YXZlLWdyYWRpZW50KTtmaWxsLXJ1bGU6ZXZlbm9kZCIgZD0ibSAwLDExLjM4NDQ4IGMgMCwwIDIxLjEzMzg1MSwxMS4zOTUzMSA0My42MTc2NjEsMTEuMzg0NDEgQyA2Ni4xMDE0NzEsMjIuNzU3OTkgMTA3Ljk2ODU2LDAuMDMyNjIgMTMwLjUwOCw3ZS01IGMgMjIuNTM5NDQsLTAuMDMyNSA0My45NjI2NCwxMS4zODQ0MSA0My45NjI2NCwxMS4zODQ0MSBWIDQ2LjM0NTk0IEggMCBaIiAvPgo8L3N2Zz4=");
+
+
+
+background-repeat: repeat-x ; 
+/* background-size: 500px auto; */
+/* background-position: bottom; */
+/* position: absolute; */
+/* bottom: 0%; */
+width: 100%;
+/* height: 200px; */
+z-index: 1;
+}
+
+.hero-section {
+      display: flex;
+      align-items: center;
+      padding: 50px;
+      
+    }
+    .hero-left {
+      flex: 1;
+      width: 70%;
+    }
+    .hero-heading {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .hero-subheading {
+      font-weight: lighter;
+      font-size: medium;
+      display: inline;
+    }
+    .hero-paragraph {
+      margin-top: 10px;
+      font-size: large;
+      justify-content: center;
+    }
+    .hero-buttons{
+        width: 100%;
+    }
+    .hero-buttons img {
+      width: 100%;
+      /* height: 20px; */
+      /* margin-right: 8px; */
+    }
+    .hero-right {
+        width: 30%;
+      flex: 1;
+      /* background-image: url("assets/img/spot1.png"); */
+      background-color: rgb(239, 223, 226);
+      border-top-left-radius: 195em;
+      border-top-right-radius: 275em;
+      border-bottom-left-radius: 245em;
+      border-bottom-right-radius: 145em;
+      background-size: cover;
+      background-position: center;
+      /* padding: 35px; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: 100vh; */
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+
+    .right-section {
+      background-image: url('assets/img/whatwedo.png');
+      background-size: cover; 
+      color: white;
+      /* width: 70%; */
+      /* height: 100%; */
+     
+    }
+    .left-section{
+      /* width: 30%; */
+      margin-right: -75px;
+      z-index: 99;
+      margin-top: 45px;
+      /* margin-left: 45px; */
+    }
+    .right-section h1, .right-section p {
+      z-index: 1;
+      padding-left: 175px;
+      padding-right: 75px;
+      font-size: large;
+      justify-content: center;
+
+    }
+    .right-section h1{
+      margin-top: 45px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      .right-section h1, .right-section p {
+      z-index: 1;
+      padding-left: 45px;
+      padding-right: 35px;
+      font-size: smaller;
+      justify-content: center;
+      
+
+    }
+    .right-section h1{
+      margin-top: 45px;
+    }
+}
+   
+    
+    .left-section img {
+      width: 100%;
+      height: auto;   
+      
+     
+    }
+
+    
+    .col-md-3{flex:0 0 auto;width:25%}
+
+    @media (max-width: 968px) {
+    .col-md-3 {
+        flex: 0 0 auto;
+        width:45%;
+        align-items: center !important;
+        text-align: center;
+        margin-left: 145px;
+        
+    }
+    .col-md-3 h3 {
+    font-size: xx-small;
+    font-weight: bold;
+    }
+    .col-md-3 h5 {
+    font-size: xx-small;
+    font-weight: bold;
+    }
+}
+    /*.active{
+        color: red;
+    }*/
+    </style>
+</head>
+<body>
+   
+   <!--Header Section Start-->
+   
+  <nav class="navbar navbar-expand-lg navbar-light bg-light  sticky-top">
+    <div class="container-fluid " style="  background-color: #0f155e; border-bottom-left-radius: 2em; border-bottom-right-radius: 2em;  ">
+      <!-- Brand/Logo -->
+       <!-- <div class="left" > -->
+         <a class="navbar-brand" href="index.html" >
+           <img src="assets/img/logo.png" alt="PUGSDE" width="236" height="77" class="d-inline-block align-text-top">        
+          </a>
+        <!-- </div> -->
+
+  <!-- <div class="right"> -->
+      <!-- Toggle button for mobile view -->
+      <button style="background: #fff;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNav"  >
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="az-games.html">Amazon Games</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ps-games.html">Playstore Games</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="privacy-policy.html">Privacy Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact-us.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    <!-- </div> -->
+    </div>
+  </nav>
+
+
+   <!--End Header Section -->
+
+
+        
+    
+   <!--Main Section Start-->
+
+    <main>
+      <section class="hero hero-section" name="hero" id="hero">
+         <div class="hero-section hero">
+                
+                <div class="hero-left">
+                  <h1 class="hero-heading">
+                    <span style="color: red; padding-left: 12%; " > WELCOME  
+                    <span class="hero-subheading"> TO</span>
+                  </span> 
+                    <br>
+                    <span>
+                      PUGSDE SOLUTIONS!
+                    </span> 
+                  </h1>
+                  <p class="hero-paragraph" style="color :#a6aaac">
+                     we specialize in crafting delightful and
+                     engaging casual games designed for Android devices. 
+                     Our studio is dedicated to creating games that are easy to pick up, 
+                     fun to play, and perfect for players of all ages.
+                      We focus on delivering experiences that provide a quick escape 
+                      from the daily grind, all while keeping players entertained and
+                       coming back for more.
+                  </p>
+                  <div class="hero-buttons ">
+                    <a target="_blank" href="https://www.amazon.com/s?i=mobile-apps&rh=p_4%3APugsde+Solutions&search-type=ss" class="btn ">
+                      <img src="assets/img/amazoon.png" alt="Amazon"> 
+                    </a>
+                    <a target="_blank" href="https://play.google.com/store/apps/developer?id=Pugsde+Solutions" class="btn  ">
+                      <img src="assets/img/playstore.png" alt="Playstore">
+                    </a>
+                  </div>
+                </div>
+              
+               
+                <div class="hero-right">
+                  <div class="image-grid ">
+                   
+                    <img  src="assets/img/ic1.png" alt="Image 1" > 
+                    <img  src="assets/img/ic2.png" alt="Image 2" >                  
+                    <img  src="assets/img/ic3.png" alt="Image 3" >                  
+                    <img  src="assets/img/ic4.png" alt="Image 4" >
+                  
+                  </div>
+                </div>
+            </div> 
+      </section>
+
+
+<!--  Test Sections-->
+
+
+<style>
+       
+
+  /* Section with sine wave background */
+  .sine-wave-section {
+      position: relative;
+      height: 150vh;
+      background-color: #0f155e; /* Ocean blue background */
+      overflow: hidden;
+  }
+
+  /* Sine wave at the top */
+  .sine-wave-top {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 250px;
+      transform: rotate(180deg); /* Flip the wave for the top */
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" d="M0,160C144,80,288,0,432,0C576,0,720,80,864,80C1008,80,1152,0,1296,0C1440,0,1440,320,1440,320H0Z"></path></svg>');
+      background-size: cover;
+  }
+
+  /* Sine wave at the bottom */
+  .sine-wave-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 250px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" d="M0,224C144,144,288,64,432,64C576,64,720,144,864,144C1008,144,1152,64,1296,64C1440,64,1440,320,1440,320H0Z"></path></svg>');
+      background-size: cover;
+  }
+
+  /* Content styling */
+  .Sinewave-content {
+      text-align: center;
+      color: white;
+      padding-top: 200px;
+      font-size: 36px;
+      z-index: 1;
+      position: relative;
+  }
+</style>
+
+
+
+<section class="sine-wave-section">
+  <div class="Sinewave-content">
+   
+    <h1 style="color: red; text-align: center;">
+      Our Mission
+    </h1>
+    <span style="padding: 45px;  justify-content: center; color: #fff;">
+      Our mission is to develop casual games that blend simplicity with sophistication,
+       offering player’s enjoyable moments of relaxation and challenge.
+        We aim to make gaming accessible to everyone by creating
+       intuitive and captivating experiences that fit seamlessly into everyday life.
+    </span>   
+        <div style="margin-top: 45px; width: 95%; text-align: center;"> 
+          
+        
+          <div class="flex" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;  padding-left: 5%;" >
+           <div class="col-md-6">
+             <img src="assets/img/ic5.png" alt="Image 1">
+            </div>
+            <div class="col-md-6">
+            <img src="assets/img/ic6.png" alt="Image 2">
+          </div>
+          <div class="col-md-6">
+            <img src="assets/img/ic7.png" alt="Image 3">
+          </div>
+        <div class="col-md-6">
+            <img src="assets/img/ic8.png" alt="Image 4">
+          </div>
+          </div>
+      
+          
+      </div>
+      
+  </div>
+  <!-- Static sine waves at top and bottom -->
+  <div class="sine-wave-top"></div>
+ 
+  <div class="sine-wave-bottom"></div>
+</section>
+
+
+
+<!--end  Test Sections-->
+
+     
+
+      <section class="what-we-do" name="what-we-do" id="what-we-do">
+        
+        <div style="margin-top: 45px; width: 95%; text-align: center;"> 
+   
+     <h1 style="color: red; text-align: center;">
+       What We Do <br>
+       <span style="color: #000;">
+         GET THE BEST SERVICES FROM US
+       </span>
+     </h1>
+     <span style="  justify-content: center; color :#a6aaac">
+      We create casual games that are easy to learn but hard to put down. 
+      Our games feature engaging mechanics, vibrant visuals, and smooth controls,
+       designed specifically for the Android environment.
+     </span>
+    
+
+     
+ </div>
+<!-- </section>
+
+
+<section class=" my-5"> -->
+  <div class="row">
+    <!-- Left Section (Images and Text) -->
+    <div class="col-md-4 left-section">
+      <div class="row ">
+        <div class="col-md-6 mb-4">
+          <img src="assets/img/gamedev.png" alt="Image 1">
+        </div>
+        <div class="col-md-6 mb-4">
+          <img src="assets/img/uiux.png" alt="Image 2">
+        </div>
+        <div class="col-md-6 mb-4">
+          <img src="assets/img/gamequailty.png" alt="Image 3">
+        </div>
+        <div class="col-md-6 mb-4">
+          <img src="assets/img/marketing.png" alt="Image 4">
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section (Background Image and Text) -->
+    <div class="col-md-8 d-flex align-items-center right-section">
+      <div class="overlay">
+        <h1 style="color: #fff;">Game Development</h1>
+        <p>
+          Gaming plays a huge part in people's lives.
+           We have many people globally spending their time on laptops, 
+           engaging in different exciting games. To a business that wants to invest in 
+           creating a game, the market is readily available, and it is a business 
+           opportunity that no one should miss. We have game developers and game development
+            firms, earning billions of dollars by effectively utilizing this opportunity.
+             You can be a part of this team if you get developers that can create a game
+              for you that will help you develop a game that can attract many users and earn
+               a lot of profit. Here at Windstar games, we can help in the development 
+               of such a game. We have a team that can create high-quality games for
+                different platforms. We only settle for quality, and we develop games 
+                that have people glued to their phones or laptops. Join the many clients
+                 that we have served across the
+           globe today by getting our services.
+           </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Our Team Section Start-->
+
+<div class="text-center mb-5  mt-5" >
+  <h1 style="color: red; text-align: center;">Our Team</h1>
+  <p style=" margin: 45px; justify-content: center; color :#a6aaac">
+    Our talented team consists of game designers, developers,
+     and sound engineers who are passionate about casual gaming.
+      We work collaboratively to ensure each game is polished, fun, 
+      and addictive. With a blend of creativity and technical expertise, 
+    we strive to make every game a standout experience on the Android platform
+  </p>
+</div>
+<section class=" my-5 sine-wave-section"  >
+  <div class="Sinewave-content">
+
+  <!-- Team Member Carousel -->
+  <div  id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <!-- Indicators -->
+    <!-- <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+    </ol> -->
+  
+    <div class="carousel-inner mb-125">
+        <!-- First Slide -->
+        <div class="carousel-item active">
+            <div class="row align-items-center">
+               <div class="col-md-6">
+                    <div class="carousel-caption-left">
+                        <p >
+                          A visionary Game Company CEO with a passion for driving innovation and growth in the
+                           gaming industry. Skilled in strategic planning, business development, 
+                           and team leadership, with a focus on delivering successful, high-quality games. 
+                           Committed to fostering creativity and pushing the boundaries of interactive entertainment.
+
+                          </p>
+                    </div>
+                </div>
+                <div class="col-md-3 right-content" width="410" height="410">
+                  
+                    <img   src="assets/img/saad.png" class="d-block w-100 mb-3" alt="Image 1">
+                   
+                    <h3>SAAD PERVEZ KHAN</h3>
+                    <h5>CEO & FOUNDER</h5>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Second Slide -->
+        <div class="carousel-item">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="carousel-caption-left">
+                        <p>
+                          An innovative CEO in the gaming industry, dedicated to advancing creativity and driving business growth. Expertise in strategic planning, business expansion, and leading dynamic teams, with a focus on producing successful, top-tier games. Passionate about pushing the limits of interactive entertainment and nurturing a culture of innovation.
+                          </p>
+                    </div>
+                </div>
+                <div class="col-md-3 right-content">
+                    <img src="assets/img/faizan.png" class="d-block w-100 mb-3" alt="Image 2">
+                    <h3>RAJA FAIZAN MEHMOOD</h3>
+                    <h5>CEO & FOUNDER</h5>
+                </div>
+            </div>
+        </div>
+  
+        
+         <!-- 3th Slide -->
+
+        <div class="carousel-item">
+          <div class="row align-items-center">
+              <div class="col-md-6">
+                  <div class="carousel-caption-left">
+                      <p>A dedicated Game HR Manager with expertise in talent acquisition, team development, and employee engagement within the gaming industry. Skilled in building creative teams, fostering a positive work culture, and aligning HR strategies with company goals. Passionate about supporting game development teams to drive innovation and success.</p>
+                  </div>
+              </div>
+              <div class="col-md-3 right-content">
+                  <img src="assets/img/umer.png" class="d-block w-100 mb-3" alt="Image 3">
+                  <h3 >UMAR ALI ASGHAR</h3>
+                  <h5>HR MANAGER</h5>
+              </div>
+          </div>
+        </div>
+<!-- 4th Slide -->
+        <div class="carousel-item">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="carousel-caption-left">
+                        <p>A Team Lead Unity Developer with extensive experience in designing and developing high-quality games. Skilled in C#, gameplay mechanics, and optimization, with a proven track record of leading teams through all phases of development. Focused on delivering innovative and engaging game experiences while mentoring and guiding junior developers.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 right-content">
+                    <img src="assets/img/musa.png" class="d-block w-100 mb-3" alt="Image 3">
+                    <h3 >MUSA ALI</h3>
+                    <h5>TEAM LEAD</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5th Slide -->
+
+        <div class="carousel-item">
+          <div class="row align-items-center">
+              <div class="col-md-6">
+                  <div class="carousel-caption-left">
+                      <p>Highly skilled Senior Graphic Designer specializing in game visuals and UI/UX. Combines artistic flair with technical expertise to create captivating and immersive gaming experiences. Proven track record in leading design projects and delivering innovative, high-quality graphics.</p>
+                  </div>
+              </div>
+              <div class="col-md-3 right-content">
+                  <img src="assets/img/sajjad.png" style=" width: auto;   height: auto;    max-width: none;" class="d-block w-100 mb-3" alt="Image 3">
+                  <h3 >M.SAJJAD KHAN</h3>
+                  <h5>SENIOR GRAPHIC DESIGNER</h5>
+              </div>
+          </div>
+      </div>
+
+      <!-- 6th Slide -->
+
+      <div class="carousel-item">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="carousel-caption-left">
+                    <p>A Senior Game Developer with expertise in designing and developing engaging, high-performance games. Skilled in Unity, C#, and game architecture, with a strong focus on gameplay mechanics and optimization. Experienced in leading teams and delivering successful projects from concept to launch.</p>
+                </div>
+            </div>
+            <div class="col-md-3 right-content">
+                <img src="assets/img/wasif.png" class="d-block w-100 mb-3" alt="Image 3">
+                <h3 > WASIF SHOAIB</h3>
+
+                <h5>UNITY3D GAME DEVELOPER </h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7th Slide -->
+
+    <div class="carousel-item">
+      <div class="row align-items-center">
+          <div class="col-md-6">
+              <div class="carousel-caption-left">
+                  <p>A  Game Artist with extensive experience in creating stunning visual assets for games. Skilled in 2D/3D art, character design, and environmental modeling, with a strong focus on artistic style and detail. Proven ability to lead art teams and deliver high-quality visuals that enhance gameplay and storytelling.</p>
+              </div>
+          </div>
+          <div class="col-md-3 right-content">
+              <img src="assets/img/abdullah.png" class="d-block w-100 mb-3" alt="Image 3">
+              <h3 > M.ABDULLAH </h3>
+              <h5>GRAPHIC DESIGNER</h5>
+          </div>
+      </div>
+  </div>
+
+  <!-- 8th Slide -->
+
+  <div class="carousel-item">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div class="carousel-caption-left">
+                <p>A Junior Game Developer passionate about creating immersive gaming experiences. Proficient in Unity and C#, with a focus on gameplay mechanics and problem-solving. Eager to learn and contribute to the development of innovative games.</p>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <img src="assets/img/mudasir.png" class="d-block w-100 mb-3" alt="Image 3">
+            <h3 > MUDASIR SHAFIQUE </h3>
+            <h5>GAME DEVELOPER</h5>
+        </div>
+    </div>
+</div>
+
+<!-- 9th Slide -->
+<div class="carousel-item">
+  <div class="row align-items-center">
+      <div class="col-md-6">
+          <div class="carousel-caption-left">
+              <p>A Junior Game Developer passionate about creating immersive gaming experiences. Proficient in Unity and C#, with a focus on gameplay mechanics and problem-solving. Eager to learn and contribute to the development of innovative games.</p>
+          </div>
+      </div>
+      <div class="col-md-3 right-content">
+          <img src="assets/img/zohaib.png" class="d-block w-100 mb-3" alt="Image 3">
+          <h3 > M.ZOHAIB  </h3>
+          <h5>GAME DEVELOPER</h5>
+      </div>
+  </div>
+</div>
+
+
+<!-- 10th Slide -->
+
+<div class="carousel-item">
+  <div class="row align-items-center">
+      <div class="col-md-6">
+          <div class="carousel-caption-left">
+              <p>A Junior Game Designer with a passion for crafting engaging and innovative game experiences. Skilled in level design, gameplay mechanics, and user experience. Eager to learn and collaborate on creative projects to bring fresh ideas to life.</p>
+          </div>
+      </div>
+      <div class="col-md-3 right-content">
+          <img src="assets/img/rahim.png" class="d-block w-100 mb-3" alt="Image 3">
+          <h3 >ABDUL RAHIM</h3>
+          <h5>GRAPHIC DESIGNER</h5>
+      </div>
+  </div>
+</div>
+
+<!-- 11th Slide -->
+
+<div class="carousel-item">
+  <div class="row align-items-center">
+      <div class="col-md-6">
+          <div class="carousel-caption-left">
+              <p>A Unity3d/Web and Server-Side Developer with extensive experience in building full-stack, scalable, and high-performance applications. Proficient in front-end technologies like HTML, CSS, JavaScript, and modern frameworks, as well as server-side development with Node.js, Python, and database management. Strong focus on responsive design, user experience, server architecture, and security, with a proven track record of leading teams and delivering reliable web solutions from front-end to back-end.</p>
+          </div>
+      </div>
+      <div class="col-md-3 right-content">
+          <img src="assets/img/waqar.png" class="d-block w-100 mb-3" alt="Image 3">
+          <h3 >WAQAR AHMAD</h3>
+          <h5>BACKEND UNITY/WEB DEVELOPER</h5>
+      </div>
+  </div>
+</div>
+
+    </div>
+  
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- Static sine waves at top and bottom -->
+<div class="sine-wave-top"></div>
+
+<div class="sine-wave-bottom"></div>
+</section>
+
+<style>
+  .carousel-item {
+      min-height: 400px; /* Adjust as per your design */
+  }
+  .carousel-caption-left {
+      text-align: justify;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  }
+  .right-content {
+      text-align: center;
+  }
+  .carousel-caption-left p {
+      margin: 0;
+  }
+  .carousel-item h3{
+    color: red;
+  }
+  .carousel-item h5{
+    color: #fff;
+  }
+  .carousel-item p{
+    color: #fff; 
+    padding-left: 75px;
+    padding-right: 75px;
+    justify-content: center;
+  }
+  h1{
+    color:red;
+  }
+     
+  .mb-125{
+          margin-bottom: 125px;
+        }
+  
+</style>
+
+
+
+
+
+<!-- End Our Team Section-->
+
+
+
+<!--Contact Us Section Start-->
+
+<section style="padding: 0; background-color: #f0f0f000; "   name="Contact" class="" id="contact1">
+
+  <div class="contact1">
+    <h1 style="z-index: 3; " >Contact Us</h1>
+  </div>
+  <div class="container">
+    <div class="heading-container mt-5">
+      <h2>Still have questions?</h2>
+      <p>Contact us for more information or assistance.</p>
+    </div>
+
+    <form action="Thanks.html" id="contact">
+      <div class="group">
+        <input type="text" placeholder="Full Name"  required/>
+        <input type="email" id="email" name="email" placeholder="Enter your email" 
+        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required/>
+      </div>
+      <textarea placeholder="Your Message" required></textarea>
+      <button class="btn mb-4" type="submit" >Send Message</button>
+    </form>
+  </div>
+
+</section>
+
+
+<!--End Contact Us Section -->
+
+    </main>    
+
+   <!-- End Main Section -->
+
+   <!--Footer Section Start-->
+
+
+         <!-- Footer Section -->
+      <!-- Footer Section -->
+
+  <footer class=" text-light py-4 mt-5" style="height: 100%; background: #0f155e;">
+    <div class="container">
+        <div class="row">
+            <!-- About Us -->
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>We are a company dedicated to providing top-quality services and products to our customers worldwide.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light">Home</a></li>
+                    <li><a href="#" class="text-light">Services</a></li>
+                    <li><a href="#" class="text-light">Contact</a></li>
+                    <li><a href="#" class="text-light">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <p><i class="bi bi-geo-alt"></i> 123 Street, City, Country</p>
+                <p><i class="bi bi-telephone"></i> +123 456 7890</p>
+                <p><i class="bi bi-envelope"></i> info@example.com</p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col text-center">
+                <p>&copy; 2024 PUGSDE SOLUTIONS. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+   <!--End Footer Section -->
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
