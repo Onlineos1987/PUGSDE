@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ad Priority Editor</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+    h2 { color: #333; }
+    textarea { width: 100%; height: 300px; padding: 10px; font-family: monospace; }
+    button { padding: 10px 15px; margin-top: 10px; font-weight: bold; cursor: pointer; }
+    #output { white-space: pre-wrap; background: #eaeaea; padding: 10px; margin-top: 20px; border: 1px solid #ccc; }
+    .login { margin-bottom: 20px; background: #fff; padding: 20px; border: 1px solid #ccc; }
+    .hidden { display: none; }
+    label { font-weight: bold; }
+    input[type="password"] { padding: 5px; width: 200px; }
+  </style>
+</head>
+<body>
+
+<div class="login" id="loginSection">
+  <label for="password">Enter Password:</label>
+  <input type="password" id="password" />
+  <button onclick="checkPassword()">Login</button>
+</div>
+
+<div id="editorSection" class="hidden">
+  <h2>Ad Network Priority Editor</h2>
+  <p>Edit the JSON config below to manage your ad mediation waterfall.</p>
+
+  <textarea id="jsonInput">{
+    "rewarded": ["mintegral", "vungle", "chartboost"],
+    "interstitial": ["vungle", "mintegral"],
+    "regions": {
+      "US": {
+        "rewarded": ["vungle", "mintegral"],
+        "interstitial": ["mintegral"]
+      },
+      "IN": {
+        "rewarded": ["chartboost", "vungle"],
+        "interstitial": ["vungle"]
+      }
+    }
+  }</textarea>
+
+  <br>
+  <button onclick="downloadJSON()">Download JSON File</button>
+  <button onclick="validateJSON()">Validate JSON</button>
+
+  <div id="output"></div>
+</div>
+
+<script>
+  const correctPassword = "despx123";
+
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    if (input === correctPassword) {
+      document.getElementById("loginSection").classList.add("hidden");
+      document.getElementById("editorSection").classList.remove("hidden");
+    } else {
+      alert("Incorrect password. Access denied.");
+    }
+  }
+
+  function downloadJSON() {
+    const content = document.getElementById("jsonInput").value;
+    try {
+      const obj = JSON.parse(content); // Validate
+      const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "ad_priority.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (e) {
+      alert("Invalid JSON: " + e.message);
+    }
+  }
+
+  function validateJSON() {
+    const content = document.getElementById("jsonInput").value;
+    try {
+      const obj = JSON.parse(content);
+      document.getElementById("output").textContent = "✅ JSON is valid!";
+    } catch (e) {
+      document.getElementById("output").textContent = "❌ Invalid JSON: " + e.message;
+    }
+  }
+</script>
+
+</body>
+</html>
