@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ad Mediation Config Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f8;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    .region-block {
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+
+    .password-prompt {
+      background: #fff;
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+      max-width: 400px;
+      margin: 100px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div id="auth" class="password-prompt">
+  <h2>Enter Dashboard Password</h2>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <br><br>
+  <button onclick="checkPassword()">Enter</button>
+  <p id="passwordError" class="error"></p>
+</div>
+
+<div id="editor" style="display:none">
+  <h2>Ad Mediation JSON Config Editor</h2>
+
+  <label>Global Rewarded Priority (comma separated)</label>
+  <input type="text" id="globalRewarded" placeholder="e.g. mintegral,vungle,chartboost">
+
+  <label>Global Interstitial Priority (comma separated)</label>
+  <input type="text" id="globalInterstitial" placeholder="e.g. vungle,mintegral">
+
+  <h3>Region Specific Priorities</h3>
+  <div id="regionsContainer"></div>
+  <button onclick="addRegion()">➕ Add Region</button>
+
+  <br><br>
+  <button onclick="generateJSON()">📄 Generate JSON</button>
+  <button onclick="downloadJSON()">⬇️ Download JSON</button>
+  <br><br>
+  <textarea id="output" rows="15" placeholder="Generated JSON will appear here..."></textarea>
+</div>
+
+<script>
+  const PASSWORD = "despx123"; // Change to your own password
+
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    if (input === PASSWORD) {
+      document.getElementById("auth").style.display = "none";
+      document.getElementById("editor").style.display = "block";
+    } else {
+      document.getElementById("passwordError").textContent = "Incorrect password.";
+    }
+  }
+
+  function addRegion() {
+    const container = document.getElementById("regionsContainer");
+    const block = document.createElement("div");
+    block.className = "region-block";
+
+    const html = `
+      <label>Region Code (e.g. US, IN)</label>
+      <input type="text" class="regionCode" placeholder="Region code">
+
+      <label>Rewarded Priority</label>
+      <input type="text" class="regionRewarded" placeholder="e.g. vungle,mintegral">
+
+      <label>Interstitial Priority</label>
+      <input type="text" class="regionInterstitial" placeholder="e.g. chartboost,vungle">
+
+      <button onclick="this.parentElement.remove()">❌ Remove</button>
+    `;
+    block.innerHTML = html;
+    container.appendChild(block);
+  }
+
+  function generateJSON() {
+    const rewarded = document.getElementById("globalRewarded").value.split(",").map(e => e.trim()).filter(e => e);
+    const interstitial = document.getElementById("globalInterstitial").value.split(",").map(e => e.trim()).filter(e => e);
+
+    const json = {
+      rewarded,
+      interstitial,
+      regions: {}
+    };
+
+    const blocks = document.querySelectorAll(".region-block");
+    blocks.forEach(block => {
+      const region = block.querySelector(".regionCode").value.trim();
+      const regionRewarded = block.querySelector(".regionRewarded").value.split(",").map(e => e.trim()).filter(e => e);
+      const regionInterstitial = block.querySelector(".regionInterstitial").value.split(",").map(e => e.trim()).filter(e => e);
+
+      if (region) {
+        json.regions[region] = {
+          rewarded: regionRewarded,
+          interstitial: regionInterstitial
+        };
+      }
+    });
+
+    document.getElementById("output").value = JSON.stringify(json, null, 2);
+  }
+
+  function downloadJSON() {
+    generateJSON(); // make sure latest is saved
+    const dataStr = document.getElementById("output").value;
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ad_priority.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+</body>
+</html>
