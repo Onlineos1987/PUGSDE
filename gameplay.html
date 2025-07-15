@@ -45,7 +45,11 @@
       <button type="submit" class="btn btn-primary mt-4">Add Game</button>
     </form>
 
-    <h2 class="mb-3">Game List</h2>
+    <div class="d-flex justify-content-between mb-3">
+      <h2>Game List</h2>
+      <button class="btn btn-success" onclick="exportGames()">Export JSON</button>
+    </div>
+
     <table class="table table-bordered" id="gameTable">
       <thead class="table-dark">
         <tr>
@@ -87,6 +91,16 @@
         localStorage.setItem('games', JSON.stringify(games));
         renderGames();
       }
+    }
+
+    function exportGames() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(games, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "games-config.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
     }
 
     form.addEventListener('submit', (e) => {
