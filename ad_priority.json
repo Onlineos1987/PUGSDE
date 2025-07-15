@@ -1,0 +1,14 @@
+{
+  "rewarded": ["mintegral", "vungle", "chartboost"],
+  "interstitial": ["vungle", "mintegral"],
+  "regions": {
+    "US": {
+      "rewarded": ["vungle", "mintegral"],
+      "interstitial": ["mintegral"]
+    },
+    "IN": {
+      "rewarded": ["chartboost", "vungle"],
+      "interstitial": ["vungle"]
+    }
+  }
+}
