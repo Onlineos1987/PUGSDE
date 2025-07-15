@@ -3,66 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Play Free HTML5 & WebGL Games | GameVault</title>
-  <meta name="description" content="Play high-quality free HTML5 and WebGL games online. Discover top trending action, puzzle, and racing games. Optimized for mobile and desktop." />
-  <meta name="keywords" content="HTML5 games, WebGL games, play online, free browser games, mobile games" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://yourdomain.com/" />
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta property="og:title" content="Play Free HTML5 & WebGL Games | GameVault" />
-  <meta property="og:description" content="Discover and play HTML5 & WebGL games optimized for all devices. Top-rated and trending games updated weekly." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourdomain.com/" />
-  <meta property="og:image" content="/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "GameVault",
-      "url": "https://yourdomain.com/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://yourdomain.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+  <title>GameVault CMS - Manage Your HTML5 & WebGL Games</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="mb-4">GameVault CMS</h1>
+
+    <form id="gameForm" class="mb-5">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="title" class="form-label">Game Title</label>
+          <input type="text" class="form-control" id="title" required />
+        </div>
+        <div class="col-md-6">
+          <label for="slug" class="form-label">Slug (URL path)</label>
+          <input type="text" class="form-control" id="slug" required />
+        </div>
+        <div class="col-md-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" rows="3" required></textarea>
+        </div>
+        <div class="col-md-6">
+          <label for="category" class="form-label">Category</label>
+          <input type="text" class="form-control" id="category" placeholder="e.g. Action, Puzzle" />
+        </div>
+        <div class="col-md-6">
+          <label for="thumbnail" class="form-label">Thumbnail URL</label>
+          <input type="url" class="form-control" id="thumbnail" required />
+        </div>
+        <div class="col-md-6">
+          <label for="gameUrl" class="form-label">Game URL</label>
+          <input type="url" class="form-control" id="gameUrl" required />
+        </div>
+        <div class="col-md-6">
+          <label for="releaseDate" class="form-label">Release Date</label>
+          <input type="date" class="form-control" id="releaseDate" required />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">Add Game</button>
+    </form>
+
+    <h2 class="mb-3">Game List</h2>
+    <table class="table table-bordered" id="gameTable">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Slug</th>
+          <th>Category</th>
+          <th>Release</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById('gameForm');
+    const gameTableBody = document.querySelector('#gameTable tbody');
+    let games = JSON.parse(localStorage.getItem('games') || '[]');
+
+    function renderGames() {
+      gameTableBody.innerHTML = '';
+      games.forEach((game, index) => {
+        const row = `<tr>
+          <td>${game.title}</td>
+          <td>${game.slug}</td>
+          <td>${game.category}</td>
+          <td>${game.release}</td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteGame(${index})">Delete</button>
+          </td>
+        </tr>`;
+        gameTableBody.innerHTML += row;
+      });
+    }
+
+    function deleteGame(index) {
+      if (confirm('Are you sure you want to delete this game?')) {
+        games.splice(index, 1);
+        localStorage.setItem('games', JSON.stringify(games));
+        renderGames();
       }
     }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const game = {
+        title: form.title.value.trim(),
+        slug: form.slug.value.trim(),
+        description: form.description.value.trim(),
+        category: form.category.value.trim(),
+        thumbnail: form.thumbnail.value.trim(),
+        gameUrl: form.gameUrl.value.trim(),
+        release: form.releaseDate.value
+      };
+      games.push(game);
+      localStorage.setItem('games', JSON.stringify(games));
+      form.reset();
+      renderGames();
+    });
+
+    renderGames();
   </script>
-</head>
-<body>
-  <header>
-    <h1>GameVault</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/categories/action">Action</a>
-      <a href="/categories/puzzle">Puzzle</a>
-      <a href="/categories/racing">Racing</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h2>Play the Best Free HTML5 & WebGL Games</h2>
-      <p>Fully responsive, SEO-optimized, and lightning fast!</p>
-    </section>
-
-    <section class="game-grid">
-      <article class="game-card">
-        <a href="/games/space-runner">
-          <img src="/images/space-runner.jpg" alt="Space Runner Game" loading="lazy" />
-          <h3>Space Runner</h3>
-        </a>
-        <p>Dodge asteroids and run through space in this action-packed game!</p>
-      </article>
-      <!-- Repeat game-card for other games -->
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 GameVault. All rights reserved.</p>
-    <a href="/sitemap.xml">Sitemap</a>
-    <a href="/privacy-policy">Privacy Policy</a>
-  </footer>
 </body>
 </html>
