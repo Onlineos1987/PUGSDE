@@ -173,6 +173,46 @@
     a.click();
     URL.revokeObjectURL(url);
   }
+  // Auto-load existing JSON config
+window.onload = function () {
+  const remoteURL = "https://yourdomain.com/ad_priority.json"; // 🔁 Replace with your actual URL
+
+  fetch(remoteURL)
+    .then(res => res.json())
+    .then(data => populateEditor(data))
+    .catch(err => console.warn("Couldn't load existing config:", err));
+};
+
+function populateEditor(data) {
+  document.getElementById("globalRewarded").value = data.rewarded?.join(",") || "";
+  document.getElementById("globalInterstitial").value = data.interstitial?.join(",") || "";
+
+  const container = document.getElementById("regionsContainer");
+  container.innerHTML = "";
+
+  if (data.regions) {
+    for (const region in data.regions) {
+      const rData = data.regions[region];
+      const block = document.createElement("div");
+      block.className = "region-block";
+
+      block.innerHTML = `
+        <label>Region Code</label>
+        <input type="text" class="regionCode" value="${region}">
+
+        <label>Rewarded Priority</label>
+        <input type="text" class="regionRewarded" value="${rData.rewarded?.join(',')}">
+
+        <label>Interstitial Priority</label>
+        <input type="text" class="regionInterstitial" value="${rData.interstitial?.join(',')}">
+
+        <button onclick="this.parentElement.remove()">❌ Remove</button>
+      `;
+      container.appendChild(block);
+    }
+  }
+}
+
 </script>
 
 </body>
