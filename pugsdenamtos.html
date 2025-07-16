@@ -3,197 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amanotes | #1 Music Game Publisher Worldwide</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Amanotes | Music Creation for Everyone</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --accent: #00cec9;
-            --dark: #1a1a2e;
-            --darker: #0f0f1a;
-            --light: #f7f7f7;
-            --success: #00b894;
-            --warning: #fdcb6e;
-            --danger: #ff7675;
-            --transition: all 0.3s ease;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            --gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --primary: #6e44ff;
+            --secondary: #ff44a8;
+            --accent: #44ffb0;
+            --dark: #0a0a1a;
+            --light: #f0f0ff;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--darker);
+            background-color: var(--dark);
             color: var(--light);
-            line-height: 1.6;
             overflow-x: hidden;
+            background: linear-gradient(135deg, #0a0a1a, #1a0a2a);
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--accent);
-            color: var(--darker);
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            text-decoration: none;
-        }
-        
-        .btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .btn-outline:hover {
-            background: var(--accent);
-            color: var(--darker);
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Header Styles */
-        header {
+        #canvas-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            transition: var(--transition);
+            height: 100%;
+            z-index: -1;
         }
         
-        .navbar {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
         
         .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
         }
         
-        .logo span {
-            color: var(--accent);
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
         }
         
-        .nav-links {
+        nav ul {
             display: flex;
             list-style: none;
         }
         
-        .nav-links li {
+        nav ul li {
             margin-left: 30px;
         }
         
-        .nav-links a {
+        nav ul li a {
             color: var(--light);
-            font-weight: 500;
-            font-size: 1.1rem;
             text-decoration: none;
-            transition: var(--transition);
+            font-weight: 500;
             position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
         }
         
-        .nav-links a:after {
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
             background: var(--accent);
-            transition: var(--transition);
+            transition: width 0.3s ease;
         }
         
-        .nav-links a:hover:after {
+        nav ul li a:hover::after {
             width: 100%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--light);
         }
         
         /* Hero Section */
@@ -201,269 +120,245 @@
             height: 100vh;
             display: flex;
             align-items: center;
+            padding-top: 80px;
             position: relative;
             overflow: hidden;
-            background: var(--gradient);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
         }
         
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .hero-content {
+            max-width: 650px;
+            z-index: 10;
         }
         
-        .hero:before {
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: rgba(240, 240, 255, 0.8);
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 20, 0.7);
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
         }
         
-        .hero-content {
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(110, 68, 255, 0.4);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        /* Apps Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            color: rgba(240, 240, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .app-card {
+            background: rgba(30, 30, 50, 0.5);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             z-index: 2;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
         }
         
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        /* Achievements Section */
-        .achievements {
-            background: var(--dark);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        
-        .stat-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: var(--transition);
-        }
-        
-        .stat-item:hover {
+        .app-card:hover {
             transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
-        .stat-item i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Games Section */
-        .games {
-            background: var(--darker);
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .game-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-        }
-        
-        .game-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .game-image img {
+        .app-card img {
             width: 100%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            transition: var(--transition);
         }
         
-        .game-card:hover .game-image img {
-            transform: scale(1.1);
+        .app-content {
+            padding: 25px;
         }
         
-        .game-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--success);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .game-content {
-            padding: 1.5rem;
-        }
-        
-        .game-title {
+        .app-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
         }
         
-        .game-description {
-            margin-bottom: 1.5rem;
-            color: #aaa;
+        .app-card p {
+            color: rgba(240, 240, 255, 0.7);
+            margin-bottom: 20px;
         }
         
-        .game-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #888;
+        .app-card .btn {
+            padding: 10px 20px;
             font-size: 0.9rem;
         }
         
-        /* Mission Section */
-        .mission {
-            background: var(--dark);
+        /* About Section */
+        .about {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: rgba(240, 240, 255, 0.8);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .stat-box {
             text-align: center;
+            padding: 20px;
+            background: rgba(68, 255, 176, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(68, 255, 176, 0.2);
         }
         
-        .mission-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .mission-statement {
-            font-size: 1.8rem;
-            font-style: italic;
-            margin-bottom: 2rem;
+        .stat-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             color: var(--accent);
         }
         
-        /* Partnership Section */
-        .partnership {
-            background: var(--darker);
-            text-align: center;
-        }
-        
-        .partner-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .partner-logo {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            width: 200px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .partner-logo img {
-            max-width: 100%;
-            max-height: 100%;
+        .stat-box p {
+            font-size: 0.9rem;
+            color: rgba(240, 240, 255, 0.7);
         }
         
         /* Footer */
         footer {
-            background: #0a0a14;
+            background: rgba(5, 5, 15, 0.9);
             padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .footer-grid {
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
-        .footer-col h3 {
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             color: var(--accent);
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
         }
         
-        .footer-col h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-        }
-        
-        .footer-links {
+        .footer-column ul {
             list-style: none;
         }
         
-        .footer-links li {
-            margin-bottom: 0.8rem;
+        .footer-column ul li {
+            margin-bottom: 12px;
         }
         
-        .footer-links a {
-            color: #aaa;
-            transition: var(--transition);
+        .footer-column ul li a {
+            color: rgba(240, 240, 255, 0.7);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
-        .footer-links a:hover {
+        .footer-column ul li a:hover {
             color: var(--accent);
-            padding-left: 5px;
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 15px;
+            margin-top: 20px;
         }
         
         .social-links a {
@@ -472,355 +367,425 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            color: white;
-            transition: var(--transition);
+            background: rgba(240, 240, 255, 0.1);
+            color: var(--light);
             text-decoration: none;
+            transition: all 0.3s ease;
         }
         
         .social-links a:hover {
-            background: var(--accent);
+            background: var(--primary);
             transform: translateY(-3px);
-            color: var(--dark);
         }
         
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #777;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(240, 240, 255, 0.5);
             font-size: 0.9rem;
         }
         
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
             
-            .section-title {
-                font-size: 2rem;
+            .about-content {
+                grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--dark);
-                flex-direction: column;
-                padding: 2rem;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                height: auto;
-                padding: 120px 0 80px;
+            nav ul {
+                display: none;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .menu-toggle {
+                display: block;
+                font-size: 24px;
+                color: var(--light);
+                cursor: pointer;
             }
         }
         
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
         }
     </style>
 </head>
 <body>
+    <!-- Canvas Background -->
+    <canvas id="canvas-bg"></canvas>
+    
     <!-- Header -->
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <i class="fas fa-music"></i> Amanotes
-                </a>
-                
-                <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#games">Games</a></li>
-                    <li><a href="#achievements">Achievements</a></li>
-                    <li><a href="#mission">Mission</a></li>
-                    <li><a href="#partnership">Partnership</a></li>
+        <div class="container header-inner">
+            <div class="logo">
+                <i>🎵</i>
+                Amanotes
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#apps">Apps</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#careers">Careers</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
             </nav>
         </div>
     </header>
-
+    
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content container">
-            <h1>Everyone Can Music</h1>
-            <p>We're the #1 Music Game Publisher Worldwide</p>
-            <p>Creating sensational musical experiences for mobile users since 2014</p>
-            <div class="hero-buttons">
-                <a href="#games" class="btn">Play Games</a>
-                <a href="#mission" class="btn btn-outline">Learn More</a>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Music Creation for Everyone</h1>
+                <p class="fade-in">We make music games that help everyone experience the joy of creating music. Join millions of players worldwide and unleash your creativity.</p>
+                <a href="#apps" class="btn fade-in">Explore Our Apps</a>
             </div>
         </div>
     </section>
-
-    <!-- Achievements Section -->
-    <section class="achievements" id="achievements">
+    
+    <!-- Apps Section -->
+    <section id="apps" class="section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Achievements</h2>
-                <p class="section-subtitle">With over 3.5 billion downloads, we've transformed the mobile gaming landscape</p>
+            <div class="section-title">
+                <h2>Our Popular Apps</h2>
+                <p>Discover our music games that have been downloaded by millions worldwide</p>
             </div>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <i class="fas fa-download"></i>
-                    <div class="stat-number">3.5B+</div>
-                    <p>App Downloads</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <div class="stat-number">70M+</div>
-                    <p>Monthly Active Users</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-asia"></i>
-                    <div class="stat-number">Top 1</div>
-                    <p>Publisher from Southeast Asia</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-trophy"></i>
-                    <div class="stat-number">20+</div>
-                    <p>Awards and Certificates</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Games Section -->
-    <section class="games" id="games">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Popular Games</h2>
-                <p class="section-subtitle">Discover our top music games that have captivated millions worldwide</p>
-            </div>
-            
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); height: 100%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-piano" style="font-size: 4rem; color: white;"></i>
-                        </div>
+            <div class="apps-grid">
+                <div class="app-card scale-in">
+                    <div class="app-img" style="background: linear-gradient(135deg, #6e44ff, #44ffb0); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <div style="font-size: 3rem;">🎹</div>
                     </div>
-                    <div class="game-content">
-                        <div class="game-badge">#1 Game</div>
-                        <h3 class="game-title">Magic Tiles 3</h3>
-                        <p class="game-description">Tap tiles to the rhythm of hit songs. Play piano with over 1000 songs across various genres.</p>
-                        <div class="game-meta">
-                            <span><i class="fas fa-download"></i> 500M+ Downloads</span>
-                            <span><i class="fas fa-star"></i> 4.5/5</span>
+                    <div class="app-content">
+                        <h3>Tiles Hop</h3>
+                        <p>Jump to the beat in this addictive music game with thousands of songs to play.</p>
+                        <a href="#" class="btn">Download Now</a>
+                    </div>
+                </div>
+                
+                <div class="app-card scale-in">
+                    <div class="app-img" style="background: linear-gradient(135deg, #ff44a8, #6e44ff); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <div style="font-size: 3rem;">🥁</div>
+                    </div>
+                    <div class="app-content">
+                        <h3>Magic Tiles 3</h3>
+                        <p>Play the piano with your fingers! Enjoy the world's most popular piano game.</p>
+                        <a href="#" class="btn">Download Now</a>
+                    </div>
+                </div>
+                
+                <div class="app-card scale-in">
+                    <div class="app-img" style="background: linear-gradient(135deg, #44ffb0, #ff44a8); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <div style="font-size: 3rem;">🎸</div>
+                    </div>
+                    <div class="app-content">
+                        <h3>Dancing Road</h3>
+                        <p>Dance your way through colorful roads and create your own music journey.</p>
+                        <a href="#" class="btn">Download Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>About Amanotes</h2>
+                    <p>Amanotes is a leading mobile game publisher focused on music games. Founded in 2014, we've grown to become one of the top game developers in Southeast Asia with over 2 billion downloads worldwide.</p>
+                    <p>Our mission is to bring the joy of music creation to everyone through fun and accessible games. We believe that everyone can be musical, and our games are designed to unlock that potential.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-box">
+                            <h3>2B+</h3>
+                            <p>Downloads</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>200M+</h3>
+                            <p>Monthly Players</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>100+</h3>
+                            <p>Team Members</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="game-card">
-                    <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); height: 100%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-basketball-ball" style="font-size: 4rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Color Hop 3D</h3>
-                        <p class="game-description">One-finger control gameplay with EDM songs. Hop your ball to the beat and avoid wrong colors.</p>
-                        <div class="game-meta">
-                            <span><i class="fas fa-download"></i> 10M+ Downloads</span>
-                            <span><i class="fas fa-star"></i> 4.2/5</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game-card">
-                    <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); height: 100%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-road" style="font-size: 4rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Dancing Road</h3>
-                        <p class="game-description">Follow the rhythm and avoid obstacles. Dance your way through challenging levels.</p>
-                        <div class="game-meta">
-                            <span><i class="fas fa-download"></i> 100M+ Downloads</span>
-                            <span><i class="fas fa-star"></i> 4.3/5</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game-card">
-                    <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); height: 100%; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-cat" style="font-size: 4rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Duet Cats</h3>
-                        <p class="game-description">Control two cute cats in this rhythmic adventure. Perfect coordination is the key to success.</p>
-                        <div class="game-meta">
-                            <span><i class="fas fa-download"></i> 50M+ Downloads</span>
-                            <span><i class="fas fa-star"></i> 4.4/5</span>
-                        </div>
-                    </div>
+                <div class="about-img scale-in" style="position: relative; height: 400px; background: linear-gradient(45deg, rgba(110, 68, 255, 0.2), rgba(255, 68, 168, 0.2)); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                    <div style="font-size: 10rem; opacity: 0.5;">🎵</div>
+                    <div style="position: absolute; top: 20px; left: 20px; font-size: 8rem; opacity: 0.3;">🎶</div>
+                    <div style="position: absolute; bottom: 20px; right: 20px; font-size: 8rem; opacity: 0.3;">🎧</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Mission</h2>
-                <p class="section-subtitle">Why we do what we do</p>
-            </div>
-            
-            <div class="mission-content">
-                <p class="mission-statement">"Delight people with interactive music experiences"</p>
-                <p>At Amanotes, we believe that music is for everyone. Our mission is to create innovative music games that allow people to interact with music in ways they never thought possible.</p>
-                <p>Founded in 2014, we've grown to become the world's leading music game publisher by combining cutting-edge technology with creative gameplay and popular music.</p>
-                <p>With over 3.5 billion downloads across our portfolio of games, we continue to push the boundaries of what's possible in mobile music gaming.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Partnership Section -->
-    <section class="partnership" id="partnership">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Strategic Partnership</h2>
-                <p class="section-subtitle">We've teamed up with industry leaders to enhance gaming experiences</p>
-            </div>
-            
-            <div class="partner-logos">
-                <div class="partner-logo">
-                    <i class="fas fa-gamepad" style="font-size: 3rem; color: var(--dark);"></i>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-headphones" style="font-size: 3rem; color: var(--dark);"></i>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-record-vinyl" style="font-size: 3rem; color: var(--dark);"></i>
-                </div>
-            </div>
-            
-            <p style="margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                "Partnering with COMBO! allows us to connect our massive player base with global brands in a meaningful way, enhancing the value we deliver to our players and partners alike." - Rahul Ravindranath, Head of Liveops at Amanotes
-            </p>
-        </div>
-    </section>
-
+    
     <!-- Footer -->
     <footer id="contact">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
+            <div class="footer-content">
+                <div class="footer-column">
                     <h3>Amanotes</h3>
-                    <p>World's leading publisher of music-based mobile games, with over 3 billion downloads across our popular titles.</p>
+                    <p style="color: rgba(240, 240, 255, 0.7); margin-bottom: 20px;">Bringing the joy of music creation to everyone.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><span>📱</span></a>
+                        <a href="#"><span>📘</span></a>
+                        <a href="#"><span>🐦</span></a>
+                        <a href="#"><span>📸</span></a>
                     </div>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Our Games</h3>
-                    <ul class="footer-links">
+                <div class="footer-column">
+                    <h3>Our Apps</h3>
+                    <ul>
                         <li><a href="#">Magic Tiles 3</a></li>
-                        <li><a href="#">Color Hop 3D</a></li>
                         <li><a href="#">Tiles Hop</a></li>
                         <li><a href="#">Dancing Road</a></li>
-                        <li><a href="#">Duet Cats</a></li>
+                        <li><a href="#">Tap Tap Music</a></li>
+                        <li><a href="#">Beat Tiles</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
+                <div class="footer-column">
                     <h3>Company</h3>
-                    <ul class="footer-links">
+                    <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Press Kit</a></li>
+                        <li><a href="#">News</a></li>
                         <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Community</a></li>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Email: contact@amanotes.com</li>
+                        <li>Phone: +1 (234) 567-890</li>
+                        <li>Address: Hanoi, Vietnam</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Amanotes Pte. Ltd. All rights reserved. | 36 Robinson Road #20-01 City House Singapore 068877</p>
-                <p>Contact: publishing@amanotes.com | +84 817 869 005</p>
+                <p>&copy; 2023 Amanotes. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        // Canvas Background Animation
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Set canvas size to window size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Particle class for floating notes
+        class Particle {
+            constructor() {
+                this.size = Math.random() * 20 + 5;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = this.getRandomColor();
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 2 - 1;
+                this.symbol = this.getRandomSymbol();
+            }
+            
+            getRandomColor() {
+                const colors = ['#6e44ff', '#ff44a8', '#44ffb0', '#ffd166', '#ff6b6b'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            getRandomSymbol() {
+                const symbols = ['♪', '♫', '♬', '🎵', '🎶', '🎹', '🎸', '🥁', '🎧', '🎤'];
+                return symbols[Math.floor(Math.random() * symbols.length)];
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                
+                // Keep particles within canvas bounds
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.font = `${this.size}px Arial`;
+                ctx.fillStyle = this.color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.globalAlpha = 0.6;
+                ctx.fillText(this.symbol, 0, 0);
+                ctx.restore();
+            }
+        }
+        
+        // Create particles
+        const particles = [];
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw background gradient
+            const gradient = ctx.createRadialGradient(
+                canvas.width/2, canvas.height/2, 0,
+                canvas.width/2, canvas.height/2, canvas.width
+            );
+            gradient.addColorStop(0, 'rgba(10, 10, 26, 0.8)');
+            gradient.addColorStop(1, 'rgba(25, 15, 45, 0.8)');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero section animations
+        gsap.from('.hero h1', {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            delay: 0.3,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.hero p', {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.6,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.hero .btn', {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            delay: 0.9,
+            ease: 'power3.out'
+        });
+        
+        // Apps section animations
+        gsap.utils.toArray('.scale-in').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                },
+                duration: 0.8,
+                scale: 0.8,
+                opacity: 0,
+                ease: 'back.out(1.7)',
+                stagger: 0.2
+            });
+        });
+        
+        // About section animations
+        gsap.from('.about-text', {
+            scrollTrigger: {
+                trigger: '.about',
+                start: 'top 80%'
+            },
+            duration: 1,
+            x: -50,
+            opacity: 0,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.about-img', {
+            scrollTrigger: {
+                trigger: '.about',
+                start: 'top 80%'
+            },
+            duration: 1,
+            x: 50,
+            opacity: 0,
+            ease: 'power3.out'
+        });
+        
+        // Stats animation
+        gsap.from('.stat-box', {
+            scrollTrigger: {
+                trigger: '.stats',
+                start: 'top 90%'
+            },
+            duration: 0.6,
+            y: 30,
+            opacity: 0,
+            stagger: 0.1,
+            ease: 'power3.out'
+        });
+        
+        // Footer animation
+        gsap.from('.footer-column', {
+            scrollTrigger: {
+                trigger: 'footer',
+                start: 'top 90%'
+            },
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.out'
         });
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
                 e.preventDefault();
                 
                 const target = document.querySelector(this.getAttribute('href'));
@@ -829,58 +794,7 @@
                         top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
                 }
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(26, 26, 46, 0.98)';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
-            } else {
-                header.style.background = 'rgba(26, 26, 46, 0.95)';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
-            }
-        });
-        
-        // Animation for stats
-        document.addEventListener('DOMContentLoaded', function() {
-            const stats = document.querySelectorAll('.stat-number');
-            const speed = 200;
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target') || 
-                                       parseInt(entry.target.textContent.replace(/[^0-9]/g, ''));
-                        const count = +entry.target.textContent.replace(/[^0-9]/g, '');
-                        
-                        const updateCount = () => {
-                            const increment = target / speed;
-                            
-                            if(count < target) {
-                                entry.target.textContent = Math.ceil(count + increment).toLocaleString() + 
-                                                         (entry.target.textContent.includes('+') ? '+' : '');
-                                setTimeout(updateCount, 1);
-                            } else {
-                                entry.target.textContent = target.toLocaleString() + 
-                                                         (entry.target.textContent.includes('+') ? '+' : '');
-                            }
-                        }
-                        
-                        updateCount();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            stats.forEach(stat => {
-                observer.observe(stat);
             });
         });
     </script>
